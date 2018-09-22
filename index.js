@@ -23,6 +23,10 @@ module.exports = {
   },
 
   included(app, parentAddon) {
+
+    this.ui.writeLine(__dirname);
+    this.ui.writeLine(__filename);
+    this.ui.writeLine('hola');
     let target = (app || parentAddon);
     target.options = target.options || {};
 
@@ -35,7 +39,6 @@ module.exports = {
 
     this._super.included.apply(this, arguments);
   },
-
   treeForAddonStyles(tree) {
     let bootstrapTree = new Funnel(this.getBootstrapStylesPath(), {
       destDir: 'ember-bootstrap'

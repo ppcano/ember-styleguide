@@ -1,1 +1,36 @@
-{{yield}}
+{{#cp-panels accordion=true as |panels|}}
+  {{#each content as |result|}}
+    {{#panels.panel as |panel|}}
+      {{#panel.toggle}}
+        <li class="level-1">
+          {{#if result.route}}
+            {{#link-to result.route.name}}
+              {{result.title}}
+            {{/link-to}}
+          {{else}}
+            <a class="slide-widget-head" href={{result.link}}>
+              {{result.title}}
+            </a>
+          {{/if}}
+        </li>
+      {{/panel.toggle}}
+      {{#panel.body}}
+        <ol style="display:block">
+          {{#each result.contents as |content|}}
+            <li class="level-3">
+              {{#if content.route}}
+                {{#link-to content.route.name}}
+                  {{content.title}}
+                {{/link-to}}
+              {{else}}
+                <a href="{{content.link}}">
+                  {{content.title}}
+                </a>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ol>
+      {{/panel.body}}
+    {{/panels.panel}}
+  {{/each}}
+{{/cp-panels}}
